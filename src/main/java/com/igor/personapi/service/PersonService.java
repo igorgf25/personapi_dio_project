@@ -36,13 +36,6 @@ public class PersonService {
                 .collect(Collectors.toList());
     }
 
-    private MessageResponseDTO createMessageResponse(String s, Long id2) {
-        return MessageResponseDTO.builder()
-                .message(s + id2)
-                .build();
-    }
-
-
     public PersonDTO findById(Long id) throws PersonNotFoundException {
         Person person = verifyIfExist(id);
 
@@ -53,11 +46,6 @@ public class PersonService {
         verifyIfExist(id);
 
         personRepository.deleteById(id);
-    }
-
-    private Person verifyIfExist(Long id) throws PersonNotFoundException {
-        return personRepository.findById(id)
-                .orElseThrow(() -> new PersonNotFoundException(id));
     }
 
     public MessageResponseDTO update(Long id, PersonDTO personDTO) throws PersonNotFoundException {
@@ -72,5 +60,14 @@ public class PersonService {
         return messageResponse;
     }
 
+    private MessageResponseDTO createMessageResponse(String s, Long id2) {
+        return MessageResponseDTO.builder()
+                .message(s + id2)
+                .build();
+    }
 
+    private Person verifyIfExist(Long id) throws PersonNotFoundException {
+        return personRepository.findById(id)
+                .orElseThrow(() -> new PersonNotFoundException(id));
+    }
 }
