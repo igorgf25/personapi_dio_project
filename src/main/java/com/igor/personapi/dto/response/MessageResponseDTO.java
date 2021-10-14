@@ -1,12 +1,10 @@
-package com.igor.personapi.dto;
+package com.igor.personapi.dto.response;
 
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
-public class MessagePersonDTO {
-
+public class MessageResponseDTO {
     private String message;
-
 }
